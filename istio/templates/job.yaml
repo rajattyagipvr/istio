@@ -23,6 +23,8 @@ spec:
         - apply
         - --set
         - profile={{ .Values.profile | default "default" }}
+        - --set
+        - values.gateways.istio-ingressgateway.sds.enabled=true
         command:
         - istioctl
         image: "{{ .Values.image.repository }}:{{ .Chart.Version }}"
