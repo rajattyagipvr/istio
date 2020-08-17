@@ -105,12 +105,12 @@ pipelineConfig:
         agent:
           image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
         stages:
-          # - name: setup
-          #   steps:
-          #   - sh: jx step next-version --use-git-tag-only --tag
-          #     image: 702769831180.dkr.ecr.ap-south-1.amazonaws.com/702769831180/jxl
-          #     name: next-version
-          #   # - sh: jx step tag --version $(cat ./VERSION)
+          - name: setup
+            steps:
+            - sh: jx step next-version --use-git-tag-only --tag
+              image: 702769831180.dkr.ecr.ap-south-1.amazonaws.com/702769831180/jxl
+              name: next-version
+            # - sh: jx step tag --version $(cat ./VERSION)
             #   image: 702769831180.dkr.ecr.ap-south-1.amazonaws.com/702769831180/jxl
             #   name: tag-version     
           - name: build-base
