@@ -4,7 +4,7 @@ job:
   name: "istio-boot"
 
 image:
-  repository: gcr.io/jenkinsxio-labs/istio
+  repository: 702769831180.dkr.ecr.ap-south-1.amazonaws.com/702769831180/istio
   pullPolicy: IfNotPresent
 
 serviceAccount:

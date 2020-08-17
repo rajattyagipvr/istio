@@ -1,61 +1,165 @@
-buildPack: docker-helm
-dockerRegistryOwner: jenkinsxio-labs
+# buildPack: docker-helm
+# dockerRegistryOwner: jenkinsxio-labs
+# pipelineConfig:
+#   pipelines:
+#     overrides:
+#       - name: container-build
+#         volumes:
+#           - name: gcr-sa
+#             secret:
+#               secretName: gcr-sa
+#         containerOptions:
+#           env:
+#             - name: GCP_SA
+#               value: /secrets/gcr/credentials.json
+#           volumeMounts:
+#             - name: gcr-sa
+#               mountPath: /secrets/gcr
+#         step:
+#           sh: ./build.sh
+#     release:
+#       pipeline:
+#         stages:
+#           - agent:
+#               image: gcr.io/jenkinsxio/builder-go
+#             name: chart
+#             options:
+#               volumes:
+#                 - name: chart-sa
+#                   secret:
+#                     secretName: chart-sa
+#                     items:
+#                       - key: credentials.json
+#                         path: credentials.json
+#                 - name: gcr-sa
+#                   secret:
+#                     secretName: gcr-sa
+#                     items:
+#                       - key: credentials.json
+#                         path: credentials.json
+#               containerOptions:
+#                 volumeMounts:
+#                   - name: gcr-sa
+#                     mountPath: /secrets/gcr
+#                   - name: chart-sa
+#                     mountPath: /secrets/charts
+#             steps:
+#               - name: build-and-push-image
+#                 command: ./build.sh
+
+#               - name: release-chart
+#                 command: make release
+#                 image: gcr.io/jenkinsxio-labs/helm:0.0.21
+#                 dir: /workspace/source
+#                 env:
+#                   - name: GOOGLE_APPLICATION_CREDENTIALS
+#                     value: /secrets/charts/credentials.json
+
+#               - command: ./promote.sh
+#                 dir: /workspace/source
+#                 name: promote-release
+#                 image: gcr.io/jenkinsxio/builder-go
+
+## rajat custom
+buildPack: none
 pipelineConfig:
   pipelines:
-    overrides:
-      - name: container-build
-        volumes:
-          - name: gcr-sa
-            secret:
-              secretName: gcr-sa
-        containerOptions:
-          env:
-            - name: GCP_SA
-              value: /secrets/gcr/credentials.json
-          volumeMounts:
-            - name: gcr-sa
-              mountPath: /secrets/gcr
-        step:
-          sh: ./build.sh
     release:
       pipeline:
+        options:
+          containerOptions:
+            env:
+            - name: DOCKER_REGISTRY
+              valueFrom:
+                configMapKeyRef:
+                  key: docker.registry
+                  name: jenkins-x-docker-registry
+            - name: GIT_AUTHOR_EMAIL
+              value: jenkins-x@googlegroups.com
+            - name: GIT_AUTHOR_NAME
+              value: jenkins-x-bot
+            - name: GIT_COMMITTER_EMAIL
+              value: jenkins-x@googlegroups.com
+            - name: GIT_COMMITTER_NAME
+              value: jenkins-x-bot
+            - name: XDG_CONFIG_HOME
+              value: /home/jenkins
+            name: ""
+            resources:
+              requests:
+                cpu: 1200m
+                memory: 6Gi
+            securityContext:
+              privileged: true
+            volumeMounts:
+            - mountPath: /home/jenkins
+              name: workspace-volume
+            - mountPath: /kaniko/.docker
+              name: jenkins-docker-cfg
+          volumes:
+          - emptyDir: {}
+            name: workspace-volume
+          - name: jenkins-docker-cfg
+            secret:
+              secretName: jenkins-docker-cfg
+        agent:
+          image: gcr.io/kaniko-project/executor:9912ccbf8d22bbafbf971124600fbb0b13b9cbd6
         stages:
-          - agent:
-              image: gcr.io/jenkinsxio/builder-go
-            name: chart
+          - name: setup
+            steps:
+            - sh: jx step next-version --use-git-tag-only --tag
+              image: 702769831180.dkr.ecr.ap-south-1.amazonaws.com/702769831180/jxl
+              name: next-version
+            - sh: jx step tag --version $(cat ./VERSION)
+              image: 702769831180.dkr.ecr.ap-south-1.amazonaws.com/702769831180/jxl
+              name: tag-version
+          
+          - name: build-base
             options:
               volumes:
-                - name: chart-sa
+                - name: kaniko-secret
                   secret:
-                    secretName: chart-sa
+                    secretName: kaniko-secret
                     items:
-                      - key: credentials.json
-                        path: credentials.json
-                - name: gcr-sa
-                  secret:
-                    secretName: gcr-sa
-                    items:
-                      - key: credentials.json
-                        path: credentials.json
+                      - key: kaniko-secret
+                        path: kaniko/kaniko-secret.json
               containerOptions:
                 volumeMounts:
-                  - name: gcr-sa
-                    mountPath: /secrets/gcr
-                  - name: chart-sa
-                    mountPath: /secrets/charts
+                  - name: kaniko-secret
+                    mountPath: /secrets
+            environment:
+              - name: PUSH_LATEST
+                value: "false"
+              - name: GIT_COMMITTER_EMAIL
+                value: jenkins-x@googlegroups.com
+              - name: GIT_COMMITTER_NAME
+                value: jenkins-x-bot
+              - name: GIT_AUTHOR_EMAIL
+                value: jenkins-x@googlegroups.com
+              - name: GIT_AUTHOR_NAME
+                value: jenkins-x-bot
             steps:
-              - name: build-and-push-image
-                command: ./build.sh
-
-              - name: release-chart
-                command: make release
-                image: gcr.io/jenkinsxio-labs/helm:0.0.21
-                dir: /workspace/source
-                env:
-                  - name: GOOGLE_APPLICATION_CREDENTIALS
-                    value: /secrets/charts/credentials.json
-
-              - command: ./promote.sh
-                dir: /workspace/source
-                name: promote-release
-                image: gcr.io/jenkinsxio/builder-go
+            # build base images
+            - name: build-and-push-base
+              command: /kaniko/executor
+              args:
+                - --dockerfile=/workspace/source/Dockerfile
+                - --destination=$DOCKER_REGISTRY/$DOCKER_REGISTRY_ORG/$APP_NAME:$(cat ./VERSION)
+                - --context=/workspace/source
+                - --skip-tls-verify-registry=$DOCKER_REGISTRY/$DOCKER_REGISTRY_ORG
+                - --cache-repo=$DOCKER_REGISTRY/$DOCKER_REGISTRY_ORG/cache
+                - --cache=true
+                - --cache-dir=/workspace
+          
+          - name: promote
+            dir: ./charts/REPLACE_ME_APP_NAME
+            steps:
+              - sh: jx step changelog --version v$(cat ../../VERSION)
+                name: changelog
+                image: 702769831180.dkr.ecr.ap-south-1.amazonaws.com/702769831180/jxl
+              - sh: jx step helm release
+                image: 702769831180.dkr.ecr.ap-south-1.amazonaws.com/702769831180/jxl
+                name: helm-release
+              - sh: jx promote -b --all-auto --timeout 1h --version $(cat ../../VERSION)
+                name: jx-promote
+                image: 702769831180.dkr.ecr.ap-south-1.amazonaws.com/702769831180/jxl  
