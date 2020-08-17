@@ -1,0 +1,117 @@
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32msetup[0m and container [32mstep-credential-initializer-rxhcf[0m
+{"level":"warn","ts":1597689987.2212744,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1597689987.2215936,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32msetup[0m and container [32mstep-working-dir-initializer-lbtfv[0m
+{"level":"warn","ts":1597689988.46459,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597689988.4667928,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32msetup[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32msetup[0m and container [32mstep-create-dir-workspace-zv8q5[0m
+{"level":"warn","ts":1597689994.5627973,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597689994.5638478,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p source\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32msetup[0m and container [32mstep-git-source-rajattyagipvr-istio-master-99w7q-4rrsc[0m
+{"level":"warn","ts":1597689994.8016372,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1597689996.9988136,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/*************/istio.git @ v0.0.29 in path /workspace/source"}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32msetup[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:4c6d2a25e348f002b94facd019a835ddc0a25ad7
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32msetup[0m and container [32mstep-next-version[0m
+created new version: 0.0.30 and written to file: ./VERSION
+Tag v0.0.30 created and pushed to remote origin
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32msetup[0m and container [32mstep-source-mkdir-rajattyagipvr-istio-master-99w7q-xr9mz[0m
+{"level":"warn","ts":1597690005.370601,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597690005.3724883,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /pvc/setup/workspace\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32msetup[0m and container [32mstep-source-copy-rajattyagipvr-istio-master-99w7q-lg4f5[0m
+{"level":"warn","ts":1597690005.6212955,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597690005.627158,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c cp -r source/. /pvc/setup/workspace\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mbuild-base[0m and container [32mstep-credential-initializer-zcznd[0m
+{"level":"warn","ts":1597690039.9624727,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1597690039.962837,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mbuild-base[0m and container [32mstep-working-dir-initializer-rjqbr[0m
+{"level":"warn","ts":1597690040.8977752,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597690040.8989718,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mbuild-base[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mbuild-base[0m and container [32mstep-create-dir-workspace-bqhg5[0m
+{"level":"warn","ts":1597690045.9650943,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597690045.966043,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p source\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mbuild-base[0m and container [32mstep-create-dir-workspace-5j8ww[0m
+{"level":"warn","ts":1597690046.192408,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597690046.1933734,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mbuild-base[0m and container [32mstep-source-copy-workspace-n9kz6[0m
+{"level":"warn","ts":1597690046.4017642,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597690046.4447896,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c cp -r /pvc/setup/workspace/. /workspace/source\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mbuild-base[0m and container [32mstep-build-and-push-base[0m
+[36mINFO[0m[0000] Downloading base image centos:7              
+2020/08/17 18:47:26 No matching credentials were found, falling back on anonymous
+[36mINFO[0m[0007] Error while retrieving image from cache: getting file info: stat /workspace/sha256:fe2347002c630d5d61bf2f28f21246ad1c21cc6fd343e70b4cf1e5102f8711a9: no such file or directory 
+[36mINFO[0m[0007] Downloading base image centos:7              
+2020/08/17 18:47:34 No matching credentials were found, falling back on anonymous
+[36mINFO[0m[0009] Checking for cached layer 702769831180.dkr.ecr.ap-south-1.amazonaws.com/702769831180/cache:1b8a3ba307b371f8c8c8acf86f388e5e02531c34544027e30b18ca23dea822e2... 
+[36mINFO[0m[0009] Using caching version of cmd: RUN curl -LO  https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl &&   mv kubectl /usr/local/bin/kubectl &&   chmod +x /usr/local/bin/kubectl 
+[36mINFO[0m[0009] Checking for cached layer 702769831180.dkr.ecr.ap-south-1.amazonaws.com/702769831180/cache:1b2f885d3f0c377858cea2196adad03f12c686319091f24e79bff92b68beef50... 
+[36mINFO[0m[0009] Using caching version of cmd: RUN cd /usr/local &&     curl -LO https://github.com/istio/istio/releases/download/${ISTIO_VERSION}/istio-${ISTIO_VERSION}-linux.tar.gz &&     tar xzf istio-${ISTIO_VERSION}-linux.tar.gz  &&     mv istio-${ISTIO_VERSION} istio 
+[36mINFO[0m[0009] Skipping unpacking as no commands require it. 
+[36mINFO[0m[0009] Taking snapshot of full filesystem...        
+[36mINFO[0m[0009] ENV KUBECTL_VERSION 1.16.0                   
+[36mINFO[0m[0009] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0009] RUN curl -LO  https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl &&   mv kubectl /usr/local/bin/kubectl &&   chmod +x /usr/local/bin/kubectl 
+[36mINFO[0m[0009] Found cached layer, extracting to filesystem 
+[36mINFO[0m[0010] Taking snapshot of files...                  
+[36mINFO[0m[0011] ENV ISTIO_VERSION 1.5.9                      
+[36mINFO[0m[0011] No files changed in this command, skipping snapshotting. 
+[36mINFO[0m[0011] RUN cd /usr/local &&     curl -LO https://github.com/istio/istio/releases/download/${ISTIO_VERSION}/istio-${ISTIO_VERSION}-linux.tar.gz &&     tar xzf istio-${ISTIO_VERSION}-linux.tar.gz  &&     mv istio-${ISTIO_VERSION} istio 
+[36mINFO[0m[0011] Found cached layer, extracting to filesystem 
+[36mINFO[0m[0013] Taking snapshot of files...                  
+[36mINFO[0m[0016] ENV PATH $PATH:/usr/local/istio/bin          
+[36mINFO[0m[0016] No files changed in this command, skipping snapshotting. 
+2020/08/17 18:47:43 existing blob: sha256:75f829a71a1c5277a7abf55495ac8d16759691d980bf1d931795e5eb68a294c0
+2020/08/17 18:47:43 pushed blob: sha256:7df0af38a46dfdc26c134bb0273cb7503a0e244d1dd185ef38e3ced6ff41af5a
+2020/08/17 18:47:46 pushed blob: sha256:18104aab00472b8af63969f87bd9a1688cf8bf7389c793c79c9cd5016c271c7e
+2020/08/17 18:47:49 pushed blob: sha256:1b8403634ef79b5c19fa4be5761874fbb58b24e239b3e6ce8e997171e47b59e5
+2020/08/17 18:47:49 702769831180.dkr.ecr.ap-south-1.amazonaws.com/702769831180/istio:0.0.30: digest: sha256:a6c7feb62b712c7ada2342f0055e977b3415469815332804272d9e9cde35487e size: 759
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mbuild-base[0m and container [32mstep-source-mkdir-rajattyagipvr-istio-master-99w7q-nl258[0m
+{"level":"warn","ts":1597690069.7978752,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597690069.8003929,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /pvc/build-base/workspace\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mbuild-base[0m and container [32mstep-source-copy-rajattyagipvr-istio-master-99w7q-fmkjh[0m
+{"level":"warn","ts":1597690070.0163305,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597690070.0221431,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c cp -r source/. /pvc/build-base/workspace\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mpromote[0m and container [32mstep-credential-initializer-kpfkd[0m
+{"level":"warn","ts":1597690105.6973054,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/0.8.0-**-support-backwards-incompats\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1597690105.697662,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mpromote[0m and container [32mstep-working-dir-initializer-5qmz6[0m
+{"level":"warn","ts":1597690107.2313352,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597690107.2324336,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mpromote[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mpromote[0m and container [32mstep-create-dir-workspace-829rg[0m
+{"level":"warn","ts":1597690112.0651586,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597690112.0662224,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mpromote[0m and container [32mstep-source-copy-workspace-xlfv5[0m
+{"level":"warn","ts":1597690112.2839913,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1597690112.3231711,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c cp -r /pvc/build-base/workspace/. /workspace/source\"; output "}
+
+Showing logs for build [32mrajattyagipvr-istio-master-99w7q-4[0m stage [32mpromote[0m and container [32mstep-changelog[0m
+/bin/sh: line 0: cd: /workspace/source/charts/istio: No such file or directory
+[31m
+Pipeline failed on stage 'promote' : container 'step-changelog'. The execution of the pipeline has stopped.[0m
