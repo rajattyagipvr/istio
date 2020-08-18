@@ -27,7 +27,7 @@ spec:
         - values.gateways.istio-ingressgateway.sds.enabled=true
         command:
         - istioctl
-        image: "{{ .Values.image.repository }}"
+        image: "{{ .Values.image.repository }}:{{ .Chart.Version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: job
       restartPolicy: Never
