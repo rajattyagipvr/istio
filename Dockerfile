@@ -7,7 +7,7 @@ RUN curl -LO  https://storage.googleapis.com/kubernetes-release/release/v${KUBEC
   chmod +x /usr/local/bin/kubectl
 
 # istioctl
-ENV ISTIO_VERSION 1.7.0
+ENV ISTIO_VERSION 1.6.8
 RUN cd /usr/local && \
     curl -LO https://github.com/istio/istio/releases/download/${ISTIO_VERSION}/istio-${ISTIO_VERSION}-linux-amd64.tar.gz && \
     tar xzf istio-${ISTIO_VERSION}-linux-amd64.tar.gz  && \

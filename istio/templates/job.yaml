@@ -17,10 +17,9 @@ spec:
       labels:
         release: jenkins-x
     spec:
-      containers:
+      initContainers:
       - args:
-        - manifest
-        - apply
+        - install
         - --set
         - profile={{ .Values.profile | default "default" }}
         - --set
@@ -31,6 +30,16 @@ spec:
         - istioctl
         image: "{{ .Values.image.repository }}:{{ .Chart.Version }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        name: job
+        name: job1
+      containers:
+      - args:
+        - install
+        - -f
+        - istio-minimal-operator.yml
+        command:
+        - istioctl
+        image: "{{ .Values.image.repository }}:{{ .Chart.Version }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        name: job2
       restartPolicy: Never
       serviceAccountName: {{ .Values.serviceAccount.name | default "istio-job" }}
