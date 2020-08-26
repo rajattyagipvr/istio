@@ -13,5 +13,6 @@ RUN cd /usr/local && \
     tar xzf istio-${ISTIO_VERSION}-linux-amd64.tar.gz  && \
     mv istio-${ISTIO_VERSION} istio
 
+COPY ./ WORKDIR
 ENV PATH $PATH:/usr/local/istio/bin
 

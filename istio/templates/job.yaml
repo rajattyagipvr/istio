@@ -22,8 +22,8 @@ spec:
         - install
         - --set
         - profile={{ .Values.profile | default "default" }}
-        - --set
-        - values.global.k8sIngress.enabled=true
+          #- --set
+          #- values.global.k8sIngress.enabled=true
         - --set
         - values.gateways.istio-ingressgateway.sds.enabled=true
         command:
